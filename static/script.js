@@ -89,7 +89,7 @@ function processData(data) {
 function createCards(year, title, authors, labels, cat, link, desc, img) {
     var year = (year == '') ? '' : year;
     var desc = (desc == '') ? '' : desc + '...';
-    var authors = (authors == '') ? '' : '<strong>By:</strong> ' + authors;
+    var authors = (authors == '') ? '' : '<strong>Per:</strong> ' + authors;
     var labels = (labels == '') ? '' : `🔖 <small>${labels}</small>`;
     var img = getImgSrc(img);
 
