@@ -40,6 +40,13 @@
                 </ul>
 
                 <div class="copyright">
+                    <button
+                        popovertarget="info"
+                        popovertargetaction="show"
+                        class="info"
+                    >
+                        + què és disseny expandit?
+                    </button>
                     <p>
                         Pàgina web creada i mantinguda per Carmela Forés, basat
                         en un disseny original d'<a
@@ -57,6 +64,49 @@
             <section class="resources"></section>
         </div>
 
-        <footer class="copyright"></footer>
+        <footer class="copyright">
+            <button
+                popovertarget="info"
+                popovertargetaction="show"
+                class="info"
+            >
+                + què és disseny expandit?
+            </button>
+            <p>
+                Pàgina web creada i mantinguda per Carmela Forés, basat en un
+                disseny original d'<a
+                    href="https://www.ethicaldesignresources.com/"
+                    target="_blank"
+                >Ethical Design Resources</a>. Si teniu preguntes o dubtes,
+                poseu-vos en <a href="mailto:c.forestomas@iseacv.gva.es"
+                >contacte</a>.
+            </p>
+            <p>Copyright &copy; {{ copyYear }}</p>
+        </footer>
+        <dialog id="info" popover>
+            <button
+                popovertarget="info"
+                popovertargetaction="hide"
+                class="info-close"
+            >
+                X
+            </button>
+            <h1>BANC DE RECURSOS "DISSENY EXPANDIT"</h1>
+            <p>
+                El principal objectiu del Banc de Recursos de Disseny Expandit
+                és generar un arxiu web des d'on centralitzar, recopilar i
+                facilitar la cerca d'informació i referents. I per què Disseny
+                Expandit (Expanded Design)? Perquè considerem que va més enllà
+                dels límits tradicionals del disseny, imposats per metodologies,
+                història o especialitats, per tal de poder afrontar reptes
+                socials complexos en un futur incert. Mitjançant el banc de
+                recursos, pretenem contribuir activament a una comprensió
+                profunda i crítica de com abordar els processos de disseny per
+                generar un impacte positiu en la societat contemporània. Ens
+                enfoquem en un plantejament ètic, integral i dinàmic, que ens
+                porte a solucions creatives, visualment atractives i amb un fort
+                impacte social i cultural.
+            </p>
+        </dialog>
     </body>
 </html>

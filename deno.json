@@ -1,6 +1,7 @@
 {
     "tasks": {
-        "dev": "deno serve --watch --allow-read --allow-net main.ts"
+        "dev": "deno serve --watch --allow-read --allow-net main.ts",
+        "fmt": "deno fmt --ignore=static/jquery-3.7.1.min.js"
     },
     "fmt": {
         "indentWidth": 4,

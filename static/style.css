@@ -65,10 +65,17 @@ header h1 {
 }
 
 .copyright {
-    max-width: 250px;
-    margin: 30px 30px 0 5px;
     font-size: 12px;
     line-height: 1.6em;
+    margin: 30px 30px 0 5px;
+}
+
+div.copyright {
+    max-width: 250px;
+}
+
+footer.copyright {
+    display: none;
 }
 
 .card {
@@ -172,6 +179,31 @@ header h1 {
     grid-gap: 40px 25px;
 }
 
+#info {
+    width: 50vw;
+    padding: 1em;
+}
+
+#info::backdrop {
+    backdrop-filter: blur(5px);
+}
+button {
+    all: unset;
+    cursor: pointer;
+}
+
+button:focus {
+    outline: revert;
+}
+
+.info {
+    border-bottom: 1px dashed;
+}
+
+.info-close {
+    float: right;
+}
+
 a {
     text-decoration: none;
     color: black;
@@ -219,8 +251,12 @@ a {
         flex-direction: column;
     }
 
-    .copyright {
+    div.copyright {
         display: none;
+    }
+
+    footer.copyright {
+        display: block;
     }
 
     .resources {
@@ -256,6 +292,10 @@ a {
         .card-header {
             height: 30%;
         }
+    }
+
+    #info {
+        width: 90vw;
     }
 }
 
