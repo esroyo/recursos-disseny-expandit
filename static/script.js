@@ -66,7 +66,7 @@ function processData(data) {
                 img = data[key][7];
 
             // Trim the description
-            desc = desc.split(' ').splice(0, 25).join(' ');
+            // desc = desc.split(' ').splice(0, 25).join(' ');
 
             // If category is new, push to array
             if (catsArray.indexOf(cat) === -1) {
@@ -88,7 +88,8 @@ function processData(data) {
 // Create cards
 function createCards(year, title, authors, labels, cat, link, desc, img) {
     var year = (year == '') ? '' : year;
-    var desc = (desc == '') ? '' : desc + '...';
+    // var desc = (desc == '') ? '' : desc + '...';
+    var desc = (desc == '') ? '' : desc;
     var authors = (authors == '') ? '' : '<strong>Per:</strong> ' + authors;
     var labels = (labels == '') ? '' : `🔖 <small>${labels}</small>`;
     var img = getImgSrc(img);
@@ -97,8 +98,8 @@ function createCards(year, title, authors, labels, cat, link, desc, img) {
         `<div class="card" data-category-type="${cat}" data-img-src="${img}">
         <a href="${link}" target="_blank">
           <div class="card-header">
-            <span class="card-category">${cat}</span>
-            <p class="card-date">${year}</p>
+            <span class="card-category"><!-- ${cat} --></span>
+            <p class="card-date"><!-- ${year} --></p>
           </div>
           <div class="card-content">
             <p class="card-title">${title}</p>
@@ -106,6 +107,7 @@ function createCards(year, title, authors, labels, cat, link, desc, img) {
             <p class="card-desc">${desc}</p>
             <p class="card-labels">${labels}</p>
           </div>
+          <div class="card-footer"></div>
         </a>
       </div>`;
 
@@ -155,13 +157,17 @@ function matchColor() {
                 var [r, g, b] = color.match(/rgba?\(([^,)]*),([^,)]*),([^,)]*)/)
                     .splice(1);
                 var img = y.attr('data-img-src');
-                const background =
-                    `linear-gradient(180deg, rgba(${r},${g},${b},1) 0%, rgba(${r},${g},${b},0.7) 15%, rgba(255,255,255,1) 16%, rgba(255,255,255,1) 100%), url(${img})`;
-                console.log(background);
+                const background = `linear-gradient(black, black), url(${img})`;
+                const headerBackground =
+                    `linear-gradient(225deg, rgba(${r},${g},${b},1) 0%, rgba(${r},${g},${b},1) 2rem, rgba(255,255,255,0) 2rem, rgba(255,255,255,0) 100%)`;
                 $(y).css({
                     'background': background,
                     'background-size': 'contain',
-                    'background-position': 'center',
+                    'background-position': 'top',
+                    'background-blend-mode': 'saturation',
+                });
+                $(y).find('.card-header').css({
+                    'background': headerBackground,
                 });
             }
         });
@@ -177,7 +183,7 @@ function getImgSrc(str) {
         var id = new URL(str).searchParams.get('id');
         return `https://lh3.googleusercontent.com/d/${id}=w1000?authuser=1/view`;
     } catch {
-        return '';
+        return '/static/placeholder.jpg';
     }
 }
 
