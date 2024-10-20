@@ -145,10 +145,22 @@ function normalizeText(str) {
     return str.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 }
 
+function getDriveUrlFromId(id) {
+    return `https://lh3.googleusercontent.com/d/${id}=w1000?authuser=1/view`;
+}
+
 function getImgSrc(str) {
     try {
         var id = new URL(str).searchParams.get('id');
-        return `https://lh3.googleusercontent.com/d/${id}=w1000?authuser=1/view`;
+        if (id) {
+            return getDriveUrlFromId(id);
+        }
+        var m = str.match(
+            new RegExp('https://drive.google.com/file/d/([^/]*)/'),
+        );
+        if (m) {
+            return getDriveUrlFromId(m[1]);
+        }
     } catch {
         return '/static/placeholder.jpg';
     }
