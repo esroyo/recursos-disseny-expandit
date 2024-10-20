@@ -2,7 +2,7 @@ body {
     max-width: 1400px;
     margin: 0 auto;
     font-family: Inter, sans-serif;
-    line-height: 1.6em;
+    /* line-height: 1.6em; */
     padding: 35px 50px 50px;
 }
 
@@ -181,6 +181,10 @@ footer.copyright {
 
 #info {
     width: 50vw;
+    max-width: 80vw;
+    max-width: 80dvw;
+    max-height: 80vw;
+    max-height: 80dvw;
     padding: 1em;
 }
 
@@ -196,8 +200,9 @@ button:focus {
     outline: revert;
 }
 
-.info {
+button.info {
     border-bottom: 1px dashed;
+    font-weight: bold;
 }
 
 .info-close {
