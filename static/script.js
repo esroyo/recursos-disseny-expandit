@@ -30,7 +30,8 @@ function processData(data) {
                 cat = data[key][4],
                 desc = data[key][1],
                 link = data[key][3],
-                img = data[key][7];
+                img = data[key][7],
+                exclude = data[key][8] && data[key][8].trim().length;
 
             // Trim the description
             // desc = desc.split(' ').splice(0, 25).join(' ');
@@ -40,8 +41,10 @@ function processData(data) {
                 catsArray.push(cat);
             }
 
-            // Send data to cards function
-            createCards(year, title, authors, labels, cat, link, desc, img);
+            if (!exclude) {
+                // Send data to cards function
+                createCards(year, title, authors, labels, cat, link, desc, img);
+            }
         }
     }
 
