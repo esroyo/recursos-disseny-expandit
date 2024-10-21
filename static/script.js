@@ -19,19 +19,19 @@ $.getJSON('/data', function (data) {
 // Primary Function for JSON
 function processData(data) {
     delete data[0];
-    data.sort((a, b) => (a[5] > b[5]) ? -1 : 1);
+    data.sort((a, b) => (a[0] > b[0]) ? -1 : 1);
 
     for (var key in data) {
         if (data.hasOwnProperty(key)) {
-            var year = data[key][5],
-                title = data[key][0],
-                authors = data[key][6],
-                labels = data[key][2],
-                cat = data[key][4],
-                desc = data[key][1],
-                link = data[key][3],
-                img = data[key][7],
-                exclude = data[key][8] && data[key][8].trim().length;
+            var year = data[key][6],
+                title = data[key][1],
+                authors = data[key][7],
+                labels = data[key][3],
+                cat = data[key][5],
+                desc = data[key][2],
+                link = data[key][4],
+                img = data[key][8],
+                exclude = data[key][9] && data[key][9].trim().length;
 
             // Trim the description
             // desc = desc.split(' ').splice(0, 25).join(' ');
@@ -86,7 +86,7 @@ function createCards(year, title, authors, labels, cat, link, desc, img) {
 
 // Create Filter
 function createFilter() {
-    catsArray.sort();
+    // catsArray.sort();
 
     for (i = 0; i < catsArray.length; i++) {
         $('<li/>')
@@ -129,7 +129,7 @@ function matchColor() {
                 var img = y.attr('data-img-src');
                 const background = `linear-gradient(black, black), url(${img})`;
                 const headerBackground =
-                    `linear-gradient(225deg, rgba(${r},${g},${b},1) 0%, rgba(${r},${g},${b},1) 2rem, rgba(255,255,255,0) 2rem, rgba(255,255,255,0) 100%)`;
+                    `linear-gradient(225deg, rgba(${r},${g},${b},1) 0%, rgba(${r},${g},${b},1) 2rem, rgba(0,0,0,0) 2rem, rgba(0,0,0,0) 100%)`;
                 $(y).css({
                     'background': background,
                     'background-size': 'contain',
