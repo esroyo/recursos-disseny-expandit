@@ -18,6 +18,7 @@ $.getJSON('/data', function (data) {
 
 // Primary Function for JSON
 function processData(data) {
+    const original = Array.from(data);
     delete data[0];
     data.sort((a, b) => (a[0] > b[0]) ? -1 : 1);
 
@@ -36,14 +37,20 @@ function processData(data) {
             // Trim the description
             // desc = desc.split(' ').splice(0, 25).join(' ');
 
-            // If category is new, push to array
-            if (catsArray.indexOf(cat) === -1) {
-                catsArray.push(cat);
-            }
-
             if (!exclude) {
                 // Send data to cards function
                 createCards(year, title, authors, labels, cat, link, desc, img);
+            }
+        }
+    }
+
+    for (var key in original) {
+        if (original.hasOwnProperty(key)) {
+            var cat = original[key][5];
+            exclude = original[key][9] && original[key][9].trim().length;
+            // If category is new, push to array
+            if (!exclude && catsArray.indexOf(cat) === -1) {
+                catsArray.push(cat);
             }
         }
     }
