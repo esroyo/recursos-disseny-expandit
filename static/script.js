@@ -32,12 +32,12 @@ function processData(data) {
                 desc = data[key][2],
                 link = data[key][4],
                 img = data[key][8],
-                exclude = data[key][9] && data[key][9].trim().length;
+                validated = data[key][9] && data[key][9].trim().length;
 
             // Trim the description
             // desc = desc.split(' ').splice(0, 25).join(' ');
 
-            if (!exclude) {
+            if (validated) {
                 // Send data to cards function
                 createCards(year, title, authors, labels, cat, link, desc, img);
             }
@@ -47,9 +47,9 @@ function processData(data) {
     for (var key in original) {
         if (original.hasOwnProperty(key)) {
             var cat = original[key][5];
-            exclude = original[key][9] && original[key][9].trim().length;
+            validated = original[key][9] && original[key][9].trim().length;
             // If category is new, push to array
-            if (!exclude && catsArray.indexOf(cat) === -1) {
+            if (validated && catsArray.indexOf(cat) === -1) {
                 catsArray.push(cat);
             }
         }
@@ -130,7 +130,6 @@ function matchColor() {
 
             if (x.attr('data-category-type') == y.attr('data-category-type')) {
                 var color = $(x).css('color');
-                console.log(color);
                 var [r, g, b] = color.match(/rgba?\(([^,)]*),([^,)]*),([^,)]*)/)
                     .splice(1);
                 var img = y.attr('data-img-src');
