@@ -17,41 +17,37 @@ $.getJSON('/data', function (data) {
 });
 
 // Primary Function for JSON
-function processData(data) {
-    const original = Array.from(data);
-    delete data[0];
+function processData(original) {
+    var original = original.slice(1);
+    var data = Array.from(original);
     data.sort((a, b) => (a[0] > b[0]) ? -1 : 1);
 
-    for (var key in data) {
-        if (data.hasOwnProperty(key)) {
-            var year = data[key][6],
-                title = data[key][1],
-                authors = data[key][7],
-                labels = data[key][3],
-                cat = data[key][5],
-                desc = data[key][2],
-                link = data[key][4],
-                img = data[key][8],
-                validated = data[key][9] && data[key][9].trim().length;
+    for (var key of data) {
+        var year = data[key][6],
+            title = data[key][1],
+            authors = data[key][7],
+            labels = data[key][3],
+            cat = data[key][5],
+            desc = data[key][2],
+            link = data[key][4],
+            img = data[key][8],
+            validated = data[key][9] && data[key][9].trim().length;
 
-            // Trim the description
-            // desc = desc.split(' ').splice(0, 25).join(' ');
+        // Trim the description
+        // desc = desc.split(' ').splice(0, 25).join(' ');
 
-            if (validated) {
-                // Send data to cards function
-                createCards(year, title, authors, labels, cat, link, desc, img);
-            }
+        if (validated) {
+            // Send data to cards function
+            createCards(year, title, authors, labels, cat, link, desc, img);
         }
     }
 
-    for (var key in original) {
-        if (original.hasOwnProperty(key)) {
-            var cat = original[key][5];
-            validated = original[key][9] && original[key][9].trim().length;
-            // If category is new, push to array
-            if (validated && catsArray.indexOf(cat) === -1) {
-                catsArray.push(cat);
-            }
+    for (var key of original) {
+        var cat = original[key][5];
+        validated = original[key][9] && original[key][9].trim().length;
+        // If category is new, push to array
+        if (validated && catsArray.indexOf(cat) === -1) {
+            catsArray.push(cat);
         }
     }
 
