@@ -22,16 +22,16 @@ function processData(original) {
     var data = Array.from(original);
     data.sort((a, b) => (a[0] > b[0]) ? -1 : 1);
 
-    for (var key of data) {
-        var year = data[key][6],
-            title = data[key][1],
-            authors = data[key][7],
-            labels = data[key][3],
-            cat = data[key][5],
-            desc = data[key][2],
-            link = data[key][4],
-            img = data[key][8],
-            validated = data[key][9] && data[key][9].trim().length;
+    for (let item of data) {
+        var year = item[6],
+            title = item[1],
+            authors = item[7],
+            labels = item[3],
+            cat = item[5],
+            desc = item[2],
+            link = item[4],
+            img = item[8],
+            validated = item[9] && item[9].trim().length;
 
         // Trim the description
         // desc = desc.split(' ').splice(0, 25).join(' ');
@@ -42,9 +42,9 @@ function processData(original) {
         }
     }
 
-    for (var key of original) {
-        var cat = original[key][5];
-        validated = original[key][9] && original[key][9].trim().length;
+    for (let item of original) {
+        var cat = item[5];
+        validated = item[9] && item[9].trim().length;
         // If category is new, push to array
         if (validated && catsArray.indexOf(cat) === -1) {
             catsArray.push(cat);
