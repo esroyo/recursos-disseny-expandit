@@ -1,14 +1,21 @@
 {
-    "tasks": {
-        "dev": "deno serve --watch --allow-read --allow-net main.ts",
-        "fmt": "deno fmt --ignore=static/jquery-3.7.1.min.js"
-    },
-    "fmt": {
-        "indentWidth": 4,
-        "singleQuote": true
-    },
-    "imports": {
-        "@std/assert": "jsr:@std/assert@1",
-        "@std/http": "jsr:@std/http@1"
-    }
+  "fmt": {
+    "indentWidth": 4,
+    "singleQuote": true
+  },
+  "imports": {
+    "@astrojs/internal-helpers": "npm:@astrojs/internal-helpers",
+    "@oslojs/encoding": "npm:@oslojs/encoding",
+    "clsx": "npm:clsx",
+    "cookie": "npm:cookie",
+    "cssesc": "npm:cssesc",
+    "devalue": "npm:devalue",
+    "es-module-lexer": "npm:es-module-lexer",
+    "html-escaper": "npm:html-escaper",
+    "kleur/colors": "npm:kleur/colors",
+    "neotraverse/modern": "npm:neotraverse/modern",
+    "p-limit": "npm:p-limit",
+    "unstorage": "npm:unstorage",
+    "zod": "npm:zod"
+  }
 }

@@ -1,0 +1,149 @@
+---
+const {
+    title,
+    description,
+    year,
+    authors,
+    labels,
+    category,
+    link,
+    img,
+    color
+} = Astro.props;
+const labelEmoji = '🔖';
+const [r, g, b] = color.match(/rgba?\(([^,)]*),([^,)]*),([^,)]*)/).splice(1);
+const background = `linear-gradient(black, black), url(${img})`;
+const headerBackground = `linear-gradient(225deg, rgba(${r},${g},${b},1) 0%, rgba(${r},${g},${b},1) 2rem, rgba(0,0,0,0) 2rem, rgba(0,0,0,0) 100%)`;
+---
+<div class="card" data-category-type={ category }>
+    <a href={ link } target="_blank">
+        <div class="card-header">
+            <span class="card-category"><!-- { category } --></span>
+            <p class="card-date"><!-- { year } --></p>
+        </div>
+        <div class="card-content">
+            <p class="card-title">{ title }</p>
+            <p class="card-authors">{ authors && <strong>Per: </strong> }{ authors }</p>
+            <p class="card-desc">{ description }</p>
+            <p class="card-labels">{ labels ? <small>{ labelEmoji } { labels }</small> : ''}</p>
+        </div>
+        <div class="card-footer"></div>
+    </a>
+</div>
+<style define:vars={ { background, headerBackground} }>
+.card {
+    background: var(--background);
+    background-size: contain;
+    background-position: top;
+    background-blend-mode: saturation;
+}
+
+.card-header {
+    background: var(--headerBackground);
+}
+
+.card {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 1px;
+    height: 350px;
+    width: 100%;
+    transition: all 0.3s;
+}
+
+.card a {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: scale(1.06);
+    .card-content {
+        height: 80%;
+    }
+
+    .card-header {
+        height: 15%;
+    }
+}
+
+.card-content {
+    background: white;
+    padding: 0 20px 25px;
+    font-size: 14px;
+    line-height: 1.4em;
+    overflow: auto;
+    height: 50%;
+    transition: 0.3s all;
+}
+
+.card-footer {
+    height: 5%;
+    background: white;
+}
+
+/* Card Sections */
+.card-header {
+    width: 100%;
+    height: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: 0.3s all;
+}
+
+.card-category {
+    font-size: 12px;
+    padding-left: 25px;
+    font-weight: bolder;
+    color: white;
+    letter-spacing: 0.4px;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.card-date {
+    font-size: 12px;
+    margin-right: 25px;
+    font-weight: bold;
+    color: white;
+}
+
+.card-authors {}
+
+.card-pubs {}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+@media (max-width: 860px) {
+    .card {
+        min-height: 300px;
+    }
+
+    .card-content {
+        height: 60%;
+    }
+
+    .card-header {
+        height: 30%;
+    }
+
+    .card:hover {
+        transform: inherit;
+        .card-content {
+            height: 60%;
+        }
+
+        .card-header {
+            height: 30%;
+        }
+    }
+}
+</style>

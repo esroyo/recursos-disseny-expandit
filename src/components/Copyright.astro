@@ -1,0 +1,37 @@
+---
+const copyYear = `${new Date().getFullYear()}`;
+---
+<button
+    popovertarget="info"
+    popovertargetaction="show"
+    class="info"
+>
+    + què és disseny expandit?
+</button>
+<p>
+    Pàgina web creada i mantinguda per Carmela Forés, basat
+    en un disseny original d'<a
+        href="https://www.ethicaldesignresources.com/"
+        target="_blank"
+    >Ethical Design Resources</a>. Si teniu preguntes o
+    dubtes, poseu-vos en <a
+        href="mailto:c.forestomas@iseacv.gva.es"
+    >contacte</a>.
+</p>
+<p>Copyright &copy; { copyYear }</p>
+
+<style>
+a {
+    text-decoration: underline;
+    transition: all 0.2s;
+}
+
+a:hover {
+    color: #5f5f5f;
+}
+
+button {
+    border-bottom: 1px dashed;
+    font-weight: bold;
+}
+</style>

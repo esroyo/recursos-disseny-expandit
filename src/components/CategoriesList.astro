@@ -1,0 +1,63 @@
+---
+interface Props {
+    categories: string[];
+    colors: string[];
+}
+const { categories = [], colors = [] } = Astro.props;
+---
+<categories-list>
+  <ul class="categories">
+     <li data-category-type="all" style="color: #000">Tots</li>
+     { categories.map((cat, idx) => <li data-category-type={ cat } style={ `color: ${colors[idx]}` }>{ cat }</li>) }
+  </ul>
+</categories-list>
+
+<script>
+class CategoriesList extends HTMLElement {
+    connectedCallback() {
+        this.addEventListener('click', function (event) {
+            event.preventDefault();
+            const filter = (event.target as HTMLElement)?.dataset?.categoryType;
+            if (!filter) return;
+            for (const el of document.querySelectorAll<HTMLElement>('.card')) {
+                el.style.display = filter === 'all' || el.dataset.categoryType === filter ? 'block' : 'none';
+            }
+        });
+    }
+}
+customElements.define('categories-list', CategoriesList);
+</script>
+
+<style>
+.categories {
+    padding: 0 5px;
+    margin: 0;
+}
+
+.categories li {
+    list-style-type: none;
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 0.3px;
+    cursor: pointer;
+    transition: 0.3s all;
+}
+
+.categories li:hover {
+    color: #5f5f5f !important;
+}
+
+@media (max-width: 860px) {
+    .categories {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        margin-bottom: 25px;
+    }
+
+    .categories li {
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+}
+</style>
