@@ -1,7 +1,7 @@
 import { defineCollection, z } from "astro:content";
 
 function getDriveUrlFromId(id: string) {
-  return `https://lh3.googleusercontent.com/d/${id}=w1000?authuser=1/view`;
+  return `https://lh3.googleusercontent.com/d/${id}=w400?authuser=1/view`;
 }
 
 function getImgSrc(str: string): string {
