@@ -11,9 +11,13 @@ jobs:
 
     steps:
       - name: Clone repository
-        uses:
-          - actions/checkout@v4
-          - denoland/setup-deno@v2
+        uses: actions/checkout@v4
+
+      - name: Setup deno
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+          cache: true
 
       # Not using npm? Change `npm ci` to `yarn install` or `pnpm i`
       - name: Install dependencies
